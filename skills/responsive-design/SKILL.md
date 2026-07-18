@@ -37,7 +37,7 @@ Design so nothing breaks *between* these, not just at them:
 
 ## Verification
 
-Responsive work isn't done until it's checked at real sizes, not assumed from the CSS. Using Playwright MCP or whatever browser automation is available (same pattern as `../stock-imagery/SKILL.md`):
+Responsive work isn't done until it's checked at real sizes, not assumed from the CSS. Using Playwright MCP or whatever browser automation is available (same pattern as `../image-pipeline/SKILL.md`):
 
 1. Load every page at 320, 375, 768, 1024, and 1440px, plus one large width (1920px).
 2. At each width confirm: no horizontal scrollbar, no clipped or overlapping text, no element escaping the viewport, tap targets aren't cramped, and the mobile menu opens/closes and traps focus.
