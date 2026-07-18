@@ -7,7 +7,7 @@ description: Orchestrate an end-to-end premium local-business website build or r
 
 ## Workflow
 
-1. Inspect the repository, framework, routes, components, styles, assets, scripts, and current git state. Laravel/Composer/Blade is a recognized stack alongside Next.js, React, Astro, Vue, Svelte, and plain HTML.
+1. Inspect the repository, framework, routes, components, styles, assets, scripts, and current git state — or confirm the working directory is empty/has no recognized project. Laravel/Composer/Blade is a recognized stack alongside Next.js, React, Astro, Vue, Svelte, and plain HTML.
 2. If the user's message doesn't already contain brief details (business name, industry, services, etc.), respond with the brief below and ask them to fill in and paste back what they can. Make clear they can leave fields blank — nothing is required. Wait for their reply before moving to step 3.
 
    ```
@@ -33,12 +33,13 @@ description: Orchestrate an end-to-end premium local-business website build or r
    ```
 
 3. Convert the reply into a compact site plan: audience, primary conversion, pages, required content, trust signals, integrations, and constraints. For anything still missing that's material to the design (business name, vertical, primary conversion), ask one short follow-up question rather than guessing. For everything else, make a sensible assumption and mark it as a clearly labeled placeholder.
-4. Load `../industry-blueprints/SKILL.md` and select the closest vertical.
-5. Load `../art-direction/SKILL.md` before choosing layout, typography, color, imagery, motion, and component language.
-6. Load `../conversion-copy/SKILL.md` for page copy and calls to action.
-7. If booking or reservation is a primary or secondary conversion (salons, clinics, trades, restaurants with reservations), load `../booking-engine/SKILL.md` before implementation.
-8. Load `../frontend-craft/SKILL.md` while implementing.
-9. Load `../launch-audit/SKILL.md` before completion and fix material failures.
+4. If step 1 found no existing project, scaffold one now — see `../frontend-craft/SKILL.md` for stack selection and the exact scaffold commands. Use the brief's "Framework/hosting constraints" answer when given; otherwise apply the recommendation rules there and confirm the inferred choice in one line before scaffolding.
+5. Load `../industry-blueprints/SKILL.md` and select the closest vertical.
+6. Load `../art-direction/SKILL.md` before choosing layout, typography, color, imagery, motion, and component language.
+7. Load `../conversion-copy/SKILL.md` for page copy and calls to action.
+8. If booking or reservation is a primary or secondary conversion (salons, clinics, trades, restaurants with reservations), load `../booking-engine/SKILL.md` before implementation.
+9. Load `../frontend-craft/SKILL.md` while implementing.
+10. Load `../launch-audit/SKILL.md` before completion and fix material failures.
 
 ## Default page set
 
