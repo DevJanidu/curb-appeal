@@ -59,7 +59,8 @@ description: Orchestrate an end-to-end premium local-business website build or r
 9. Load `../conversion-copy/SKILL.md` for page copy and calls to action.
 10. If the project type from step 6 is "frontend + booking" or "ERP / management system," load `../booking-engine/SKILL.md` before implementation — see that skill for how ERP-tier scope differs from plain booking.
 11. Load `../frontend-craft/SKILL.md` while implementing.
-12. Load `../launch-audit/SKILL.md` before completion and fix material failures.
+12. If any image placeholders remain (no real business photos were provided for them), load `../stock-imagery/SKILL.md` to source and verify real, working images before moving on.
+13. Load `../launch-audit/SKILL.md` before completion and fix material failures.
 
 ## Default page set
 

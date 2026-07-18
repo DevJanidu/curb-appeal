@@ -10,6 +10,7 @@ It ships as a set of skills, orchestrated by `website-director`:
 - `conversion-copy` — page copy and calls to action.
 - `frontend-craft` — implementation conventions across React, Astro, Vue, Svelte, Laravel/Blade, and plain HTML.
 - `booking-engine` — appointment/reservation booking: data model, conflict prevention, live booking UI, notifications, admin.
+- `stock-imagery` — sources real photos from Unsplash/Pixabay for image placeholders and verifies every one actually loads via browser automation.
 - `launch-audit` — pre-handoff QA pass.
 
 ## Install
@@ -43,6 +44,8 @@ Claude responds with **only** the brief below and waits — fill in and paste ba
 For (2) or (3), it then asks which stack to build in — **Laravel + Blade + Livewire** (recommended), **Laravel + Inertia + React**, or a **React + Vite frontend only** talking to a separate API — before scaffolding and running the full build: planning, visual direction, copy, booking/admin (if relevant), implementation, and a pre-handoff audit. You don't need to know or specify a tech stack up front — the brief itself has no framework field.
 
 Once confirmed, Claude saves the brief to **`project-brief.md` in your project's own folder** — a plain file in your project, not something stored inside the plugin (plugins are shared code, not per-project storage). On a later session in that same project, it reads that file back instead of asking again.
+
+For any image slots left without real business photos, Claude sources real ones from Unsplash or Pixabay and verifies they actually load before finishing. That needs a free API key — set `UNSPLASH_ACCESS_KEY` (from unsplash.com/developers) and/or `PIXABAY_API_KEY` (from pixabay.com/api/docs) in your project's `.env`. Without a key, it falls back to a neutral placeholder instead.
 
 To skip a step, paste the brief filled in yourself as your first message instead of waiting to be asked:
 
