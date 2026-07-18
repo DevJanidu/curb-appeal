@@ -11,4 +11,5 @@ jobs:
         with:
           python-version: "3.x"
       - run: python scripts/validate_plugin.py
+      - run: python scripts/validate_state.py --self-test
       - run: python skills/project-detector/scripts/detect_project.py .

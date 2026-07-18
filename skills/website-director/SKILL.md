@@ -1,85 +1,86 @@
 ---
 name: website-director
-description: Orchestrate an end-to-end premium local-business website build or redesign. Use for salons, law firms, restaurants, clinics, trades, agencies, and other location-based service businesses when the user asks to create, improve, or complete a website.
+description: Orchestrate an end-to-end, production-ready website build or redesign for any service business, with the deepest support for salons. Runs a deterministic state machine from detection through handoff. Use whenever a user asks to create, improve, continue, or audit a business website.
 ---
 
 # Website Director
 
-## Workflow
+Run one deterministic state machine. Move forward through states in order; never jump randomly, re-ask a completed question, or restart intake because optional information is missing. Persist progress so a later session resumes instead of starting over.
 
-1. Load `../project-detector/SKILL.md` and classify the workspace before asking questions or scaffolding. Also check for a saved `project-brief.md` at the project root. If it contains a business name, read it and ask only what the user wants changed. Never run a scaffold command in a non-empty directory.
-2. Default to showing the brief. Skip straight to step 3 **only** if one of these is true — otherwise, always respond with **only** the brief below (nothing else in that message, no other question bundled in), ask the user to fill in and paste back what they can, make clear they can leave fields blank, then stop and wait for their reply:
-   - The user's message already contains a **substantially filled-out brief** — most fields answered, not just the business name or a one-line project description. A message like "build a website for my hair salon" does **not** qualify; that's a project description, not a completed brief, and still needs the template shown.
-   - The user has explicitly said something like "skip the brief" / "just use placeholders" / "you decide."
+## State machine
 
-   ```
-   # Website brief
+Each state has an entry condition, an exit condition, an artifact, and a failure behavior. On failure, follow `../error-recovery` guidance in the operating rules: record the blocker in the state file, continue independent work, never rerun an unchanged failing command.
 
-   - Business name:
-   - Industry:
-   - Location/service area:
-   - Primary audience:
-   - Primary conversion:
-   - Secondary conversion:
-   - Required pages:
-   - Services and prices:
-   - Team members:
-   - Brand colors/fonts:
-   - Existing logo/photos:
-   - Address, phone, email, hours:
-   - Social links:
-   - Testimonials (verified):
-   - Integrations:
-   - Reference sites (for direction only):
-   ```
+| # | State | Do | Skill | Exit artifact |
+|---|---|---|---|---|
+| 1 | DETECT | Classify the workspace and read any saved `project-brief.md` / state file. | `../project-detector/SKILL.md` | classification + stack |
+| 2 | INTAKE | Collect business info in plain language (or accept a pasted brief). | `../business-intake/SKILL.md` | confirmed / placeholder buckets |
+| 3 | CLASSIFY | Fix the project type (brochure / booking / ERP) — always asked, never inferred. | this skill | project type |
+| 4 | RECOMMEND | Recommend project type + stack from outcome questions. | `../project-recommender/SKILL.md` | chosen stack + mode |
+| 5 | CONFIRM | Summarize plan; get an explicit go-ahead. | this skill | user approval |
+| 6 | PLAN | Assemble and save the plan. | `../project-planner/SKILL.md` | `project-brief.md`, state file |
+| 7 | PREPARE | Scaffold (only if empty) or confirm existing stack. Never scaffold into a non-empty dir. | `../frontend-craft/SKILL.md` | project skeleton |
+| 8 | BUILD | Design tokens, then shell + core pages. | `../design-system/SKILL.md`, `../salon-blueprint/` or `../business-blueprints/`, `../frontend-craft/` | core pages |
+| 9 | CONTENT | Write copy; run integrity scan. | `../conversion-copy/SKILL.md`, `../content-integrity/SKILL.md` | verified copy |
+| 10 | IMAGES | Source, optimize, verify imagery. | `../image-pipeline/SKILL.md` | images + `image-sources.json` |
+| 11 | INTEGRATIONS | Wire forms/booking to real targets. | `../form-integrations/SKILL.md`, `../booking-engine/SKILL.md` | working forms/booking |
+| 12 | SEO | Technical SEO, structured data, sitemap/robots. | `../seo/SKILL.md` | SEO applied |
+| 13 | RESPONSIVE | Mobile-first, verified at all breakpoints. | `../responsive-design/SKILL.md` | responsive verified |
+| 14 | TEST | Accessibility, security, performance, launch audit. | `../accessibility-audit/`, `../security-audit/`, `../performance-audit/`, `../launch-audit/` | audit reports |
+| 15 | FIX | Fix material issues; re-run affected checks. | relevant skill | issues resolved |
+| 16 | HANDOFF | Deployment readiness + plain-language handoff. | `../deployment-readiness/SKILL.md`, `../client-handoff/SKILL.md` | `HANDOFF.md` |
+| 17 | COMPLETE | Report what's done and what needs real info. | this skill | summary |
 
-3. When the reply arrives — even if it's partial, or they just say "skip it" / "use placeholders" — confirm what you captured in a short summary that names anything you're treating as a placeholder, and ask for a go-ahead before building. Do not re-send the brief template again and do not re-ask for fields already left blank. If a field material to the design (business name, vertical, primary conversion) is still missing, ask about that one specifically as part of this same confirmation message, not as a separate round. If there's still no new information after that single follow-up, proceed with placeholders — never loop back to asking a third time.
-4. Once confirmed, convert it into a compact site plan: audience, primary conversion, pages, required content, trust signals, integrations, and constraints.
-5. Save the finalized brief — real answers plus clearly labeled placeholders — to `project-brief.md` in the project root, so a future session reads it back in step 1 instead of asking again.
-6. Determine the project type. **Always ask this as its own message**, never inferred, never skipped, and never bundled with any other question — even if step 1 found an existing project, and even if the brief implies an answer (a field like "Primary conversion: book appointment" is not explicit enough; it decides copy, not whether this is a booking-tier build or a full ERP-tier one). The only exception: the user has already stated the project type explicitly, in so many words (e.g. literally said "I want an ERP system" or "it's just a frontend, no booking").
+CLASSIFY (state 3): always ask this as its own message, never inferred and never skipped — the only exception is the user stating it in so many words:
 
-   ```
-   What kind of project is this?
-   1. Frontend only — a marketing/brochure site, no booking or backend
-   2. Frontend + booking — a customer-facing appointment/reservation system
-   3. ERP / management system — full salon or business management (staff, scheduling, service catalog, reporting) beyond customer-facing booking
-   ```
+```
+What kind of project is this?
+1. Frontend only — a marketing/brochure site, no booking or backend
+2. Frontend + booking — a customer-facing appointment/reservation system
+3. ERP / management system — full business management beyond customer-facing booking
+```
 
-   - **Frontend only**: if step 1 found no existing project, scaffold **Astro**; if a project already exists, just continue with it. No further question either way.
-   - **Frontend + booking** or **ERP / management system**: if step 1 found an existing project, its stack is already fixed — skip the stack question and continue with what's there. Otherwise ask which stack before scaffolding, again as its own message:
+If DETECT found an existing project, keep its stack (skip the stack question in RECOMMEND) but still confirm the project type.
 
-     ```
-     Which stack should I build it in?
-     1. Laravel + Blade + Livewire (recommended — simplest path, pairs directly with this plugin's booking and admin tooling)
-     2. Laravel + Inertia + React (same backend, React-based frontend)
-     3. React + Vite frontend only, talking to a separate API you already have or will build (advanced — this plugin's booking/admin guidance assumes a Laravel backend)
-     ```
+## State file — `.curb-appeal/project-state.json`
 
-   Then scaffold per `../frontend-craft/SKILL.md`'s commands for whichever combination results — skip scaffolding entirely if a project already exists.
-7. For a salon, spa, barbershop, nail studio, or beauty business, load `../salon-blueprint/SKILL.md`. Otherwise load `../industry-blueprints/SKILL.md` and select the closest vertical.
-8. Load `../art-direction/SKILL.md` before choosing layout, typography, color, imagery, motion, and component language.
-9. Load `../conversion-copy/SKILL.md` for page copy and calls to action.
-10. If the project type from step 6 is "frontend + booking" or "ERP / management system," load `../booking-engine/SKILL.md` before implementation — see that skill for how ERP-tier scope differs from plain booking.
-11. Load `../frontend-craft/SKILL.md` while implementing, and `../responsive-design/SKILL.md` alongside it — every site is mobile-first and must work on any device.
-12. If any image placeholders remain (no real business photos were provided for them), load `../stock-imagery/SKILL.md` to source and verify real, working images before moving on.
-13. Load `../seo/SKILL.md` and apply it regardless of stack or project type — technical SEO, structured data, sitemap/robots, and Core Web Vitals.
-14. Load `../launch-audit/SKILL.md` before completion and fix material failures.
+Written/updated by `../project-planner/SKILL.md` and each state. Update atomically where practical.
+
+```json
+{
+  "schemaVersion": 1,
+  "classification": "new | existing-website | existing-unknown | mixed",
+  "stack": "astro | laravel-blade | laravel-livewire | laravel-inertia-react | react-vite | vue | svelte | static-html | unknown",
+  "projectType": "brochure | booking | erp",
+  "vertical": "salon | restaurant | law | clinic | …",
+  "buildMode": "quick | full | custom",
+  "currentStage": "BUILD",
+  "completedStages": ["DETECT", "INTAKE", "CLASSIFY", "RECOMMEND", "CONFIRM", "PLAN", "PREPARE"],
+  "pendingDecisions": [],
+  "placeholders": ["address", "testimonials"],
+  "requiredBeforeLaunch": ["real phone"],
+  "validation": { "plugin": "pass", "state": "pass" },
+  "updatedAt": "2026-07-18T00:00:00Z"
+}
+```
+
+Never store secrets, credentials, or private customer messages in this file. If the file is missing, invalid, or outdated, rebuild it from project evidence rather than trusting it blindly, and never initialize a scaffold over a partially-built project.
+
+## Central business data
+
+Create one stack-appropriate source of truth (typed config, JSON, or DB) — never duplicate business data across components. Fields: `business` (name, type, description, phone, whatsapp, email), `location` (address, city, coords, directions URL, accessibility), `hours`, `serviceCategories`, `services` (id, category, name, description, duration, price, priceQualifier, featured, bookable), `staff` (id, name, role, specialties, bio, image, bookingTarget), `gallery`, `testimonials` (verified flag), `faqs`, `booking` (mode, providerURL, policies), `socials`, `seo`, `legal`, `integrations`. Render only confirmed fields; keep placeholders out of JSON-LD; keep NAP identical everywhere. See `../salon-blueprint/references/content-model.md` for the salon shape.
 
 ## Default page set
 
-Build Home, About, Services/Pricing, Team, Gallery or Work, Contact, location/opening-hours content, testimonials, social links, and legally appropriate footer links. Combine pages only when the business or brief benefits from a focused one-page site.
+Home, About, Services/Pricing, Team, Gallery/Work, Contact, hours/location, testimonials, socials, legal footer. Quick Launch builds a focused subset (Home, Services, Contact) at the same quality bar. Combine pages only when the brief benefits.
 
 ## Operating rules
 
-- Ask one question per message and wait for the reply before asking the next. Never bundle the brief request, its confirmation, and the project-type question into a single message.
-- A short project description ("build me a salon website") is never a substitute for the brief — always show the actual brief template first unless the user already pasted a substantially completed one or explicitly said to skip it.
-- The project-type question (frontend only / booking / ERP) is never inferred from the brief and never skipped — a mention of booking in the brief is not the same as the user choosing that tier. Ask it explicitly every time, unless the user already stated the type in so many words.
-- Never re-ask for information the user already left blank or declined to give — confirm what you have (naming placeholders) and move forward. A field gets at most one follow-up, ever.
-- Never imitate a reference site exactly. Extract principles and create an original design.
-- Do not use fake awards, reviews, people, case results, statistics, addresses, or certifications. Clearly label demo content.
-- Prefer one strong visual concept over a collage of unrelated UI trends.
-- Make every page usable at 320px width through wide desktop screens.
-- Use real integrations only when keys/configuration exist; otherwise provide a graceful placeholder and setup note.
-- Finish the implementation, run relevant checks, and report only genuine remaining blockers.
-- For an existing project with a valid brief, do not restart the intake. Summarize detected context and proceed with the requested change.
-- Prefer a fast first usable build: shared layout, data model, core pages, imagery, then polish and audit. Do not build every optional feature before the primary conversion works.
+- One question per message; wait for the reply. Never bundle intake, confirmation, project-type, and stack questions together.
+- A short description ("build me a salon website") is never a substitute for intake — offer the intake choices first (`../business-intake/SKILL.md`), unless a substantially complete brief was pasted or the user said to skip.
+- Never re-ask a skipped/answered field; at most one optional follow-up, then proceed with labeled placeholders.
+- Never invent facts (awards, reviews, people, prices, addresses, hours, availability, statistics, certifications). Unknown = labeled placeholder, enforced by `../content-integrity/SKILL.md`.
+- Never scaffold into a non-empty directory, replace a framework automatically, or restart intake for an existing project with a valid brief — summarize detected context and proceed with the requested change.
+- Prefer a fast first usable build (shell → data → core pages → images → polish → audit) over building every optional feature before the primary conversion works.
+- Give short progress updates; don't dump command logs. Ask before deployment, purchases, sending messages, or destructive actions.
+- On failure: read and classify the error, try a safe fix, never rerun an unchanged failing command, preserve progress, and separate existing-project failures from ones this build introduced.

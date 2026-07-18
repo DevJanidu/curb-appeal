@@ -60,4 +60,4 @@ Before considering SEO work done, check it rather than assuming the markup is co
 - Fetch `/sitemap.xml` and `/robots.txt` directly and confirm they return valid content, not a 404.
 - Parse each page's JSON-LD as JSON to confirm it's syntactically valid.
 - Confirm title/description are non-empty and differ across every page — a template that silently repeats the same fallback text on every route is a common, easy-to-miss failure.
-- If Playwright MCP or other browser automation is available (same pattern as `../stock-imagery/SKILL.md`'s verification step), load a few key pages and inspect the rendered `<head>`, not just the server-sent HTML, to catch cases where client-side rendering strips or fails to inject meta tags.
+- If Playwright MCP or other browser automation is available (same pattern as `../image-pipeline/SKILL.md`'s verification step), load a few key pages and inspect the rendered `<head>`, not just the server-sent HTML, to catch cases where client-side rendering strips or fails to inject meta tags.

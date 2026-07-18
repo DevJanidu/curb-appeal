@@ -12,18 +12,26 @@ names = {p.relative_to(root).as_posix() for p in files}
 def has(pattern):
     return any(p.match(pattern) for p in files)
 
-pkg = {}
-if (root / "package.json").is_file():
-    try:
-        pkg = json.loads((root / "package.json").read_text(encoding="utf-8"))
-    except (OSError, json.JSONDecodeError):
-        pass
+def read_json(rel):
+    path = root / rel
+    if path.is_file():
+        try:
+            return json.loads(path.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError):
+            pass
+    return {}
+
+pkg = read_json("package.json")
 deps = {**pkg.get("dependencies", {}), **pkg.get("devDependencies", {})}
+composer = read_json("composer.json")
+composer_deps = {**composer.get("require", {}), **composer.get("require-dev", {})}
 
 signals = []
 stack = "unknown"
 if "artisan" in names and "@inertiajs/react" in deps:
     stack, signals = "laravel-inertia-react", ["artisan", "@inertiajs/react"]
+elif "artisan" in names and "livewire/livewire" in composer_deps:
+    stack, signals = "laravel-livewire", ["artisan", "livewire/livewire"]
 elif "artisan" in names:
     stack, signals = "laravel-blade", ["artisan", "resources/views" if has("resources/views/*.blade.php") else "composer"]
 elif has("astro.config.*") or "astro" in deps:
@@ -45,10 +53,21 @@ for lock, value in [("pnpm-lock.yaml", "pnpm"), ("yarn.lock", "yarn"), ("bun.loc
         manager = value
         break
 
-classification = "new" if not files else "existing-website" if stack != "unknown" else "existing-unknown"
+# The Curb Appeal plugin repository itself — never treat as a website to build.
+is_plugin_repo = ".claude-plugin/marketplace.json" in names and any(n.startswith("skills/") and n.endswith("/SKILL.md") for n in names)
+
+if is_plugin_repo:
+    classification = "curb-appeal-plugin"
+elif not files:
+    classification = "new"
+elif stack != "unknown":
+    classification = "existing-website"
+else:
+    classification = "existing-unknown"
+
 print(json.dumps({
     "root": str(root), "classification": classification, "stack": stack,
-    "confidence": "high" if signals else "low", "signals": signals,
+    "confidence": "high" if (signals or is_plugin_repo) else "low", "signals": signals,
     "package_manager": manager if pkg else None,
     "has_saved_brief": "project-brief.md" in names,
     "file_count": len(files)

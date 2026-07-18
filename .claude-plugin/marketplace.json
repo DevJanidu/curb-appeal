@@ -8,7 +8,8 @@
     {
       "name": "curb-appeal",
       "source": "./",
-      "description": "Design and build premium, conversion-focused websites for local businesses — salons, law firms, restaurants, clinics, and trades."
+      "version": "0.3.0",
+      "description": "Build production-ready, conversion-focused salon and local-business websites through a deterministic, non-technical workflow."
     }
   ]
 }
