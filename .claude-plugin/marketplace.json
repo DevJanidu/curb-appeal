@@ -6,7 +6,7 @@
   "description": "Lyco Labs' Claude Code plugins.",
   "plugins": [
     {
-      "name": "local-business-web-studio",
+      "name": "curb-appeal",
       "source": "./",
       "description": "Design and build premium, conversion-focused websites for local businesses — salons, law firms, restaurants, clinics, and trades."
     }

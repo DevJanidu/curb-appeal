@@ -1,6 +1,6 @@
 ---
 name: launch-audit
-description: Audit and finish a local-business website before handoff. Use after implementation to test functionality, responsive layout, accessibility, SEO, performance, content integrity, and conversion paths.
+description: Audit and finish a local-business website before handoff. Use after implementing a local-business site to test functionality, responsive layout, accessibility, SEO, performance, content integrity, and conversion paths.
 ---
 
 # Launch Audit

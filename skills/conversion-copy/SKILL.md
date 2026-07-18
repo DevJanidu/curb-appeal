@@ -1,6 +1,6 @@
 ---
 name: conversion-copy
-description: Write clear, credible, conversion-focused website copy for local businesses. Use for headings, service descriptions, calls to action, trust content, FAQs, metadata, and placeholder content.
+description: Write clear, credible, conversion-focused copy for a local-business website — headings, service descriptions, calls to action, trust content, FAQs, metadata, and placeholder content.
 ---
 
 # Conversion Copy

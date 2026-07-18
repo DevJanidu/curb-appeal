@@ -1,6 +1,6 @@
 ---
 name: frontend-craft
-description: Implement production-quality responsive local-business websites in an existing frontend codebase. Use for Next.js, React, Astro, Vue, Svelte, Laravel/Blade, or conventional HTML/CSS builds.
+description: Implement production-quality responsive local-business websites — Next.js, React, Astro, Vue, Svelte, Laravel/Blade, or plain HTML/CSS. Scope is local-business website work only (salons, law firms, restaurants, clinics, trades); do not use for general-purpose app development in these frameworks.
 ---
 
 # Frontend Craft

@@ -1,6 +1,6 @@
 ---
 name: art-direction
-description: Create an original premium visual system for a local-business website, including typography, color, spacing, imagery, layouts, components, and restrained motion. Use before or during frontend design.
+description: Create an original premium visual system for a local-business website, including typography, color, spacing, imagery, layouts, components, and restrained motion. Use before or during frontend design of a local-business site.
 ---
 
 # Art Direction
