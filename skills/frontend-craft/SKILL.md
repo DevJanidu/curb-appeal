@@ -25,7 +25,7 @@ Once scaffolded, everything else in this file applies exactly as it would to a p
 - Make navigation, menus, dialogs, galleries, forms, and carousels keyboard accessible.
 - Give forms real labels, validation messages, loading/success/error states, spam mitigation hooks, and a working submission target or clearly documented adapter.
 - Add map embeds with accessible titles and a direct directions link; defer loading when practical.
-- Add per-page metadata, canonical handling where supported, Open Graph basics, sitemap/robots support, and valid LocalBusiness-derived structured data using verified facts only.
+- Add per-page metadata, canonical handling, Open Graph tags, sitemap/robots support, and structured data — see `../seo/SKILL.md` for the full requirements and stack-specific notes.
 - Respect `prefers-reduced-motion`, visible focus, contrast, touch targets, and zoom.
 
 ## Laravel / Blade implementation

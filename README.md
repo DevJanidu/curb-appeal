@@ -11,6 +11,7 @@ It ships as a set of skills, orchestrated by `website-director`:
 - `frontend-craft` — implementation conventions across React, Astro, Vue, Svelte, Laravel/Blade, and plain HTML.
 - `booking-engine` — appointment/reservation booking: data model, conflict prevention, live booking UI, notifications, admin.
 - `stock-imagery` — sources real photos from Unsplash/Pixabay for image placeholders and verifies every one actually loads via browser automation.
+- `seo` — technical SEO, structured data, sitemap/robots, Core Web Vitals, and local-search optimization, regardless of stack.
 - `launch-audit` — pre-handoff QA pass.
 
 ## Install
