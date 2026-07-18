@@ -7,8 +7,10 @@ description: Orchestrate an end-to-end premium local-business website build or r
 
 ## Workflow
 
-1. Inspect the repository, framework, routes, components, styles, assets, scripts, and current git state — or confirm the working directory is empty/has no recognized project. Laravel/Composer/Blade is a recognized stack alongside React, Astro, Vue, Svelte, and plain HTML. Also check for a saved `project-brief.md` at the project root — if it exists, read it and skip straight to step 6, asking only about anything the user wants to add or change.
-2. If there's no saved brief and the user's message doesn't already contain brief details (business name, industry, services, etc.), respond with **only** the brief below — nothing else in that message, no other question bundled in. Ask them to fill in and paste back what they can, and make clear they can leave fields blank. Then stop and wait for their reply.
+1. Inspect the repository, framework, routes, components, styles, assets, scripts, and current git state — or confirm the working directory is empty/has no recognized project. Laravel/Composer/Blade is a recognized stack alongside React, Astro, Vue, Svelte, and plain HTML. Also check for a saved `project-brief.md` at the project root — if it exists **and has a business name filled in** (not an empty/unfilled template), read it and skip straight to step 6, asking only about anything the user wants to add or change. An empty or unfilled `project-brief.md` counts as no saved brief.
+2. Default to showing the brief. Skip straight to step 3 **only** if one of these is true — otherwise, always respond with **only** the brief below (nothing else in that message, no other question bundled in), ask the user to fill in and paste back what they can, make clear they can leave fields blank, then stop and wait for their reply:
+   - The user's message already contains a **substantially filled-out brief** — most fields answered, not just the business name or a one-line project description. A message like "build a website for my hair salon" does **not** qualify; that's a project description, not a completed brief, and still needs the template shown.
+   - The user has explicitly said something like "skip the brief" / "just use placeholders" / "you decide."
 
    ```
    # Website brief
@@ -69,6 +71,7 @@ Build Home, About, Services/Pricing, Team, Gallery or Work, Contact, location/op
 ## Operating rules
 
 - Ask one question per message and wait for the reply before asking the next. Never bundle the brief request, its confirmation, and the project-type question into a single message.
+- A short project description ("build me a salon website") is never a substitute for the brief — always show the actual brief template first unless the user already pasted a substantially completed one or explicitly said to skip it.
 - Never re-ask for information the user already left blank or declined to give — confirm what you have (naming placeholders) and move forward. A field gets at most one follow-up, ever.
 - Never imitate a reference site exactly. Extract principles and create an original design.
 - Do not use fake awards, reviews, people, case results, statistics, addresses, or certifications. Clearly label demo content.
