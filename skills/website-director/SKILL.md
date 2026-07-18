@@ -7,7 +7,7 @@ description: Orchestrate an end-to-end premium local-business website build or r
 
 ## Workflow
 
-1. Inspect the repository, framework, routes, components, styles, assets, scripts, and current git state — or confirm the working directory is empty/has no recognized project. Laravel/Composer/Blade is a recognized stack alongside React, Astro, Vue, Svelte, and plain HTML. Also check for a saved `project-brief.md` at the project root — if it exists **and has a business name filled in** (not an empty/unfilled template), read it and skip straight to step 6, asking only about anything the user wants to add or change. An empty or unfilled `project-brief.md` counts as no saved brief.
+1. Load `../project-detector/SKILL.md` and classify the workspace before asking questions or scaffolding. Also check for a saved `project-brief.md` at the project root. If it contains a business name, read it and ask only what the user wants changed. Never run a scaffold command in a non-empty directory.
 2. Default to showing the brief. Skip straight to step 3 **only** if one of these is true — otherwise, always respond with **only** the brief below (nothing else in that message, no other question bundled in), ask the user to fill in and paste back what they can, make clear they can leave fields blank, then stop and wait for their reply:
    - The user's message already contains a **substantially filled-out brief** — most fields answered, not just the business name or a one-line project description. A message like "build a website for my hair salon" does **not** qualify; that's a project description, not a completed brief, and still needs the template shown.
    - The user has explicitly said something like "skip the brief" / "just use placeholders" / "you decide."
@@ -56,7 +56,7 @@ description: Orchestrate an end-to-end premium local-business website build or r
      ```
 
    Then scaffold per `../frontend-craft/SKILL.md`'s commands for whichever combination results — skip scaffolding entirely if a project already exists.
-7. Load `../industry-blueprints/SKILL.md` and select the closest vertical.
+7. For a salon, spa, barbershop, nail studio, or beauty business, load `../salon-blueprint/SKILL.md`. Otherwise load `../industry-blueprints/SKILL.md` and select the closest vertical.
 8. Load `../art-direction/SKILL.md` before choosing layout, typography, color, imagery, motion, and component language.
 9. Load `../conversion-copy/SKILL.md` for page copy and calls to action.
 10. If the project type from step 6 is "frontend + booking" or "ERP / management system," load `../booking-engine/SKILL.md` before implementation — see that skill for how ERP-tier scope differs from plain booking.
@@ -81,3 +81,5 @@ Build Home, About, Services/Pricing, Team, Gallery or Work, Contact, location/op
 - Make every page usable at 320px width through wide desktop screens.
 - Use real integrations only when keys/configuration exist; otherwise provide a graceful placeholder and setup note.
 - Finish the implementation, run relevant checks, and report only genuine remaining blockers.
+- For an existing project with a valid brief, do not restart the intake. Summarize detected context and proceed with the requested change.
+- Prefer a fast first usable build: shared layout, data model, core pages, imagery, then polish and audit. Do not build every optional feature before the primary conversion works.

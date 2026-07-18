@@ -1,10 +1,12 @@
 # Curb Appeal
 
-A Claude Code plugin for designing and building premium, conversion-focused websites for local businesses — salons, law firms, restaurants, clinics, trades, and other location-based service businesses.
+A Claude Code and Codex plugin for building production-ready, conversion-focused salon websites quickly. Other local-business verticals remain supported, but the deepest blueprint is for salons, spas, barbershops, nail studios, and beauty businesses.
 
 It ships as a set of skills, orchestrated by `website-director`:
 
 - `website-director` — entry point; runs the end-to-end workflow.
+- `project-detector` — classifies new and existing projects before any scaffold or edit.
+- `salon-blueprint` — salon intake, content model, page recipes, trust signals, and fast-build rules.
 - `industry-blueprints` — information architecture and conversion paths per vertical (salon, law firm, restaurant, general).
 - `art-direction` — original visual systems, including two salon direction archetypes (soft/spa and sharp/editorial) and scroll-revealed gallery motion.
 - `conversion-copy` — page copy and calls to action.
@@ -24,7 +26,7 @@ In an interactive `claude` session (not a plain shell — launch `claude` first,
 /plugin install curb-appeal@lyco-labs
 ```
 
-This repo is private, so make sure you're authenticated with GitHub first (`gh auth login`, or an SSH key loaded in `ssh-agent`) — Claude Code reuses your existing git credentials.
+The repository is public. Authentication is only needed when contributing changes.
 
 To test a local checkout before publishing anywhere:
 

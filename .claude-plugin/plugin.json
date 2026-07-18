@@ -1,7 +1,7 @@
 {
   "name": "curb-appeal",
-  "version": "0.1.0",
-  "description": "Design and build premium, conversion-focused websites for local businesses.",
+  "version": "0.2.0",
+  "description": "Build production-ready, conversion-focused salon websites and booking experiences.",
   "author": { "name": "Lyco Labs" },
   "license": "MIT"
 }
