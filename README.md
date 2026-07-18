@@ -14,14 +14,14 @@ It ships as a set of skills, orchestrated by `website-director`:
 
 ## Install
 
-In an interactive `claude` session:
+In an interactive `claude` session (not a plain shell — launch `claude` first, then run these):
 
 ```
-/plugin marketplace add <owner>/<repo>
+/plugin marketplace add DevJanidu/curb-appeal
 /plugin install curb-appeal@lyco-labs
 ```
 
-Replace `<owner>/<repo>` with wherever this repo ends up living (for example `your-org/curb-appeal`). If the repo is private, make sure you're authenticated with your git provider first (`gh auth login` for GitHub, or an SSH key loaded in `ssh-agent`) — Claude Code reuses your existing git credentials.
+This repo is private, so make sure you're authenticated with GitHub first (`gh auth login`, or an SSH key loaded in `ssh-agent`) — Claude Code reuses your existing git credentials.
 
 To test a local checkout before publishing anywhere:
 
