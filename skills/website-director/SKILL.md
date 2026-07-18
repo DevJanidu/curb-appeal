@@ -7,8 +7,8 @@ description: Orchestrate an end-to-end premium local-business website build or r
 
 ## Workflow
 
-1. Inspect the repository, framework, routes, components, styles, assets, scripts, and current git state — or confirm the working directory is empty/has no recognized project. Laravel/Composer/Blade is a recognized stack alongside React, Astro, Vue, Svelte, and plain HTML.
-2. If the user's message doesn't already contain brief details (business name, industry, services, etc.), respond with the brief below and ask them to fill in and paste back what they can. Make clear they can leave fields blank — nothing is required. Wait for their reply before moving to step 3.
+1. Inspect the repository, framework, routes, components, styles, assets, scripts, and current git state — or confirm the working directory is empty/has no recognized project. Laravel/Composer/Blade is a recognized stack alongside React, Astro, Vue, Svelte, and plain HTML. Also check for a saved `project-brief.md` at the project root — if it exists, read it and skip straight to step 6, asking only about anything the user wants to add or change.
+2. If there's no saved brief and the user's message doesn't already contain brief details (business name, industry, services, etc.), respond with **only** the brief below — nothing else in that message, no other question bundled in. Ask them to fill in and paste back what they can, and make clear they can leave fields blank. Then stop and wait for their reply.
 
    ```
    # Website brief
@@ -31,8 +31,10 @@ description: Orchestrate an end-to-end premium local-business website build or r
    - Reference sites (for direction only):
    ```
 
-3. Convert the reply into a compact site plan: audience, primary conversion, pages, required content, trust signals, integrations, and constraints. For anything still missing that's material to the design (business name, vertical, primary conversion), ask one short follow-up question rather than guessing. For everything else, make a sensible assumption and mark it as a clearly labeled placeholder.
-4. Determine the project type — ask if it isn't already clear from the brief:
+3. When the reply arrives — even if it's partial, or they just say "skip it" / "use placeholders" — confirm what you captured in a short summary that names anything you're treating as a placeholder, and ask for a go-ahead before building. Do not re-send the brief template again and do not re-ask for fields already left blank. If a field material to the design (business name, vertical, primary conversion) is still missing, ask about that one specifically as part of this same confirmation message, not as a separate round. If there's still no new information after that single follow-up, proceed with placeholders — never loop back to asking a third time.
+4. Once confirmed, convert it into a compact site plan: audience, primary conversion, pages, required content, trust signals, integrations, and constraints.
+5. Save the finalized brief — real answers plus clearly labeled placeholders — to `project-brief.md` in the project root, so a future session reads it back in step 1 instead of asking again.
+6. Determine the project type. If it isn't already obvious from the brief, ask this **on its own**, in a separate message from the brief/confirmation exchange above:
 
    ```
    What kind of project is this?
@@ -52,12 +54,12 @@ description: Orchestrate an end-to-end premium local-business website build or r
      ```
 
    If step 1 found an existing project, skip both questions above and keep using its existing stack instead. Otherwise scaffold per `../frontend-craft/SKILL.md`'s commands for whichever combination results.
-5. Load `../industry-blueprints/SKILL.md` and select the closest vertical.
-6. Load `../art-direction/SKILL.md` before choosing layout, typography, color, imagery, motion, and component language.
-7. Load `../conversion-copy/SKILL.md` for page copy and calls to action.
-8. If the project type from step 4 is "frontend + booking" or "ERP / management system," load `../booking-engine/SKILL.md` before implementation — see that skill for how ERP-tier scope differs from plain booking.
-9. Load `../frontend-craft/SKILL.md` while implementing.
-10. Load `../launch-audit/SKILL.md` before completion and fix material failures.
+7. Load `../industry-blueprints/SKILL.md` and select the closest vertical.
+8. Load `../art-direction/SKILL.md` before choosing layout, typography, color, imagery, motion, and component language.
+9. Load `../conversion-copy/SKILL.md` for page copy and calls to action.
+10. If the project type from step 6 is "frontend + booking" or "ERP / management system," load `../booking-engine/SKILL.md` before implementation — see that skill for how ERP-tier scope differs from plain booking.
+11. Load `../frontend-craft/SKILL.md` while implementing.
+12. Load `../launch-audit/SKILL.md` before completion and fix material failures.
 
 ## Default page set
 
@@ -65,6 +67,8 @@ Build Home, About, Services/Pricing, Team, Gallery or Work, Contact, location/op
 
 ## Operating rules
 
+- Ask one question per message and wait for the reply before asking the next. Never bundle the brief request, its confirmation, and the project-type question into a single message.
+- Never re-ask for information the user already left blank or declined to give — confirm what you have (naming placeholders) and move forward. A field gets at most one follow-up, ever.
 - Never imitate a reference site exactly. Extract principles and create an original design.
 - Do not use fake awards, reviews, people, case results, statistics, addresses, or certifications. Clearly label demo content.
 - Prefer one strong visual concept over a collage of unrelated UI trends.
