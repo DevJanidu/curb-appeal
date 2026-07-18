@@ -7,22 +7,14 @@ description: Implement production-quality responsive local-business websites —
 
 ## Scaffolding a new project
 
-When the working directory has no existing project (empty, or no recognized framework/package manifest), scaffold one from scratch instead of assuming a stack:
+When the working directory has no existing project, `../website-director/SKILL.md` step 4 determines the project type and — for anything beyond a plain frontend — the stack before this step runs. Scaffold accordingly:
 
-1. Use the brief's "Framework/hosting constraints" answer if the user gave one. Otherwise recommend a stack using the rules below and confirm it in one line before running any scaffold command — don't scaffold on a guess without a quick check-in.
-2. Recommendation rules when unstated:
-   - Booking/reservation is a primary or secondary conversion → **Laravel + Blade + Livewire** (pairs directly with `../booking-engine/SKILL.md`; add Filament for the admin side). Use **Laravel + Inertia + React** instead only if the brief explicitly wants a React frontend.
-   - Brochure/marketing site with no booking backend → **Astro** — best default for SEO and performance on a content-led local-business site; drop in a React/Vue island only where real interactivity is needed.
-   - Brief names a specific stack or host (Vercel, Cloudflare Pages, an existing React team, shared PHP hosting) → follow it, and match the two: Vercel/Cloudflare Pages suit Astro, shared PHP hosting suits Laravel, plain HTML needs no host-specific tooling.
-3. Scaffold commands:
-   - **Astro**: `npm create astro@latest . -- --template minimal --install --git --yes`
-   - **React + Vite (SPA)**: `npm create vite@latest . -- --template react-ts`
-   - **Vue**: `npm create vite@latest . -- --template vue-ts`
-   - **Svelte**: `npm create vite@latest . -- --template svelte-ts`
-   - **Laravel + Blade**: `laravel new . --no-interaction` (fall back to `composer create-project laravel/laravel .` if the `laravel` installer isn't available)
-   - **Laravel + Inertia + React**: `laravel new . --react --no-interaction`
-   - **Plain HTML/CSS**: no scaffold tool — create the file structure directly.
-4. Once scaffolded, everything else in this file applies exactly as it would to a pre-existing project of that stack — there's no separate, lower bar for a project Claude just created.
+- **Frontend only → Astro**: `npm create astro@latest . -- --template minimal --install --git --yes`
+- **Laravel + Blade + Livewire** (recommended for frontend + booking, or ERP/management): `laravel new . --no-interaction` (fall back to `composer create-project laravel/laravel .` if the `laravel` installer isn't available)
+- **Laravel + Inertia + React**: `laravel new . --react --no-interaction`
+- **React + Vite only**, booking/ERP logic served by a separate API: `npm create vite@latest . -- --template react-ts`
+
+Once scaffolded, everything else in this file applies exactly as it would to a pre-existing project of that stack — there's no separate, lower bar for a project Claude just created. For an existing Vue, Svelte, or plain HTML project found in step 1, the general rules below still apply even though those aren't offered as fresh-scaffold choices.
 
 ## Implementation
 

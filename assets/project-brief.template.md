@@ -16,4 +16,3 @@
 - Testimonials (verified):
 - Integrations:
 - Reference sites (for direction only):
-- Framework/hosting constraints:

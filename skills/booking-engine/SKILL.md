@@ -1,6 +1,6 @@
 ---
 name: booking-engine
-description: Implement appointment/reservation booking for local businesses — data model, availability, conflict prevention, notifications, and staff-facing management. Use whenever booking a service or table is a primary or secondary conversion (salons, clinics, trades, restaurants with reservations).
+description: Implement appointment/reservation booking for local businesses — data model, availability, conflict prevention, notifications, and staff-facing management. Use whenever booking a service or table is a primary or secondary conversion (salons, clinics, trades, restaurants with reservations), and as the foundation for an ERP/management-tier project.
 ---
 
 # Booking Engine
@@ -30,6 +30,8 @@ Send booking confirmation immediately on-screen, then follow up with a Laravel N
 ## Admin / staff management
 
 Default to Filament for the staff-facing side — appointments calendar/list, staff CRUD, services CRUD — unless the host project already has an established admin pattern, in which case preserve that instead (per `../website-director/SKILL.md`'s rule to preserve existing conventions).
+
+When the project type is ERP/management rather than plain booking, treat this admin surface as the primary deliverable, not a secondary add-on — staff scheduling, service catalog, and appointment oversight are core to the build. Add inventory, reporting, or other modules only if the brief specifically asks for them; don't invent ERP scope beyond what's requested.
 
 ## Testing
 

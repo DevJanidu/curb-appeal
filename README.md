@@ -34,7 +34,13 @@ To test a local checkout before publishing anywhere:
 
 In your project directory, run `claude` and ask for a site — e.g. "Build a booking-first website for this hair salon." You can also invoke the workflow directly with `/curb-appeal:website-director`.
 
-Claude responds with the brief below and asks you to fill in and paste back what you can — nothing is required, leave anything blank. It fills gaps with clearly-labeled placeholders, asks a quick follow-up only for anything critical (business name, vertical, primary conversion), then runs the full build automatically: planning, visual direction, copy, booking (if relevant), implementation, and a pre-handoff audit.
+Claude responds with the brief below and asks you to fill in and paste back what you can — nothing is required, leave anything blank. It fills gaps with clearly-labeled placeholders, asks a quick follow-up only for anything critical (business name, vertical, primary conversion), then asks which kind of project this is:
+
+1. **Frontend only** — a marketing/brochure site → scaffolds **Astro** automatically, no further question.
+2. **Frontend + booking** — a customer-facing appointment/reservation system
+3. **ERP / management system** — full salon or business management beyond customer-facing booking
+
+For (2) or (3), it then asks which stack to build in — **Laravel + Blade + Livewire** (recommended), **Laravel + Inertia + React**, or a **React + Vite frontend only** talking to a separate API — before scaffolding and running the full build: planning, visual direction, copy, booking/admin (if relevant), implementation, and a pre-handoff audit. You don't need to know or specify a tech stack up front — the brief itself has no framework field.
 
 To skip a step, paste the brief filled in yourself as your first message instead of waiting to be asked:
 
@@ -57,7 +63,6 @@ To skip a step, paste the brief filled in yourself as your first message instead
 - Testimonials (verified):
 - Integrations:
 - Reference sites (for direction only):
-- Framework/hosting constraints:
 ```
 
 ## Updating

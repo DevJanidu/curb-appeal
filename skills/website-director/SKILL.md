@@ -29,15 +29,33 @@ description: Orchestrate an end-to-end premium local-business website build or r
    - Testimonials (verified):
    - Integrations:
    - Reference sites (for direction only):
-   - Framework/hosting constraints:
    ```
 
 3. Convert the reply into a compact site plan: audience, primary conversion, pages, required content, trust signals, integrations, and constraints. For anything still missing that's material to the design (business name, vertical, primary conversion), ask one short follow-up question rather than guessing. For everything else, make a sensible assumption and mark it as a clearly labeled placeholder.
-4. If step 1 found no existing project, scaffold one now — see `../frontend-craft/SKILL.md` for stack selection and the exact scaffold commands. Use the brief's "Framework/hosting constraints" answer when given; otherwise apply the recommendation rules there and confirm the inferred choice in one line before scaffolding.
+4. Determine the project type — ask if it isn't already clear from the brief:
+
+   ```
+   What kind of project is this?
+   1. Frontend only — a marketing/brochure site, no booking or backend
+   2. Frontend + booking — a customer-facing appointment/reservation system
+   3. ERP / management system — full salon or business management (staff, scheduling, service catalog, reporting) beyond customer-facing booking
+   ```
+
+   - **Frontend only** → scaffold **Astro**, no further question.
+   - **Frontend + booking** or **ERP / management system** → ask which stack before scaffolding:
+
+     ```
+     Which stack should I build it in?
+     1. Laravel + Blade + Livewire (recommended — simplest path, pairs directly with this plugin's booking and admin tooling)
+     2. Laravel + Inertia + React (same backend, React-based frontend)
+     3. React + Vite frontend only, talking to a separate API you already have or will build (advanced — this plugin's booking/admin guidance assumes a Laravel backend)
+     ```
+
+   If step 1 found an existing project, skip both questions above and keep using its existing stack instead. Otherwise scaffold per `../frontend-craft/SKILL.md`'s commands for whichever combination results.
 5. Load `../industry-blueprints/SKILL.md` and select the closest vertical.
 6. Load `../art-direction/SKILL.md` before choosing layout, typography, color, imagery, motion, and component language.
 7. Load `../conversion-copy/SKILL.md` for page copy and calls to action.
-8. If booking or reservation is a primary or secondary conversion (salons, clinics, trades, restaurants with reservations), load `../booking-engine/SKILL.md` before implementation.
+8. If the project type from step 4 is "frontend + booking" or "ERP / management system," load `../booking-engine/SKILL.md` before implementation — see that skill for how ERP-tier scope differs from plain booking.
 9. Load `../frontend-craft/SKILL.md` while implementing.
 10. Load `../launch-audit/SKILL.md` before completion and fix material failures.
 
