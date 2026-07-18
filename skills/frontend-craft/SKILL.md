@@ -39,4 +39,4 @@ Once scaffolded, everything else in this file applies exactly as it would to a p
 
 ## Responsive checkpoints
 
-Check at approximately 320, 375, 768, 1024, and 1440px. Prevent clipped text, horizontal overflow, overlapping fixed elements, unreadable line lengths, and oversized hero sections on short screens.
+Build mobile-first and verify at real breakpoints per `../responsive-design/SKILL.md` — that skill owns the full method, breakpoint list, and per-width rules. At minimum, prevent clipped text, horizontal overflow, overlapping fixed elements, unreadable line lengths, and oversized hero sections on short screens.
