@@ -32,13 +32,33 @@ To test a local checkout before publishing anywhere:
 
 ## Use
 
-Once installed, just describe the website you want in any project — e.g. "Build a booking-first website for this hair salon" — and Claude follows the `website-director` workflow automatically. You can also invoke a skill directly:
+In your project directory, run `claude` and ask for a site — e.g. "Build a booking-first website for this hair salon." You can also invoke the workflow directly with `/curb-appeal:website-director`.
+
+Claude responds with the brief below and asks you to fill in and paste back what you can — nothing is required, leave anything blank. It fills gaps with clearly-labeled placeholders, asks a quick follow-up only for anything critical (business name, vertical, primary conversion), then runs the full build automatically: planning, visual direction, copy, booking (if relevant), implementation, and a pre-handoff audit.
+
+To skip a step, paste the brief filled in yourself as your first message instead of waiting to be asked:
 
 ```
-/curb-appeal:website-director
-```
+# Website brief
 
-See `assets/project-brief.template.md` for the intake questions worth answering up front (business details, brand assets, integrations) so Claude has less to assume.
+- Business name:
+- Industry:
+- Location/service area:
+- Primary audience:
+- Primary conversion:
+- Secondary conversion:
+- Required pages:
+- Services and prices:
+- Team members:
+- Brand colors/fonts:
+- Existing logo/photos:
+- Address, phone, email, hours:
+- Social links:
+- Testimonials (verified):
+- Integrations:
+- Reference sites (for direction only):
+- Framework/hosting constraints:
+```
 
 ## Updating
 
