@@ -1,0 +1,14 @@
+{
+  "name": "lyco-labs",
+  "owner": {
+    "name": "Lyco Labs"
+  },
+  "description": "Lyco Labs' Claude Code plugins.",
+  "plugins": [
+    {
+      "name": "local-business-web-studio",
+      "source": "./",
+      "description": "Design and build premium, conversion-focused websites for local businesses — salons, law firms, restaurants, clinics, and trades."
+    }
+  ]
+}

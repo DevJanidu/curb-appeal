@@ -1,0 +1,18 @@
+{
+  "name": "local-business-web-studio",
+  "version": "0.1.0",
+  "description": "Design and build premium, conversion-focused websites for local businesses.",
+  "author": {
+    "name": "Lyco Labs"
+  },
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Local Business Web Studio",
+    "shortDescription": "Build premium local-business websites.",
+    "longDescription": "A complete workflow for strategy, visual direction, copy, implementation, SEO, accessibility, responsive behavior, and QA for salons, law firms, restaurants, and other local businesses.",
+    "developerName": "Lyco Labs",
+    "category": "Developer Tools",
+    "capabilities": ["website-design", "website-development", "seo", "quality-assurance"],
+    "defaultPrompt": "Build a premium, responsive, conversion-focused website for this local business using the existing codebase and the Local Business Web Studio workflow."
+  }
+}

@@ -1,0 +1,30 @@
+---
+name: website-director
+description: Orchestrate an end-to-end premium local-business website build or redesign. Use for salons, law firms, restaurants, clinics, trades, agencies, and other location-based service businesses when the user asks to create, improve, or complete a website.
+---
+
+# Website Director
+
+## Workflow
+
+1. Inspect the repository, framework, routes, components, styles, assets, scripts, and current git state. Laravel/Composer/Blade is a recognized stack alongside Next.js, React, Astro, Vue, Svelte, and plain HTML.
+2. Convert the brief into a compact site plan: audience, primary conversion, pages, required content, trust signals, integrations, and constraints. Make sensible assumptions when information is missing and mark placeholders clearly.
+3. Load `../industry-blueprints/SKILL.md` and select the closest vertical.
+4. Load `../art-direction/SKILL.md` before choosing layout, typography, color, imagery, motion, and component language.
+5. Load `../conversion-copy/SKILL.md` for page copy and calls to action.
+6. If booking or reservation is a primary or secondary conversion (salons, clinics, trades, restaurants with reservations), load `../booking-engine/SKILL.md` before implementation.
+7. Load `../frontend-craft/SKILL.md` while implementing.
+8. Load `../launch-audit/SKILL.md` before completion and fix material failures.
+
+## Default page set
+
+Build Home, About, Services/Pricing, Team, Gallery or Work, Contact, location/opening-hours content, testimonials, social links, and legally appropriate footer links. Combine pages only when the business or brief benefits from a focused one-page site.
+
+## Operating rules
+
+- Never imitate a reference site exactly. Extract principles and create an original design.
+- Do not use fake awards, reviews, people, case results, statistics, addresses, or certifications. Clearly label demo content.
+- Prefer one strong visual concept over a collage of unrelated UI trends.
+- Make every page usable at 320px width through wide desktop screens.
+- Use real integrations only when keys/configuration exist; otherwise provide a graceful placeholder and setup note.
+- Finish the implementation, run relevant checks, and report only genuine remaining blockers.
