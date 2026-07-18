@@ -1,6 +1,6 @@
 ---
 name: frontend-craft
-description: Implement production-quality responsive local-business websites — Next.js, React, Astro, Vue, Svelte, Laravel/Blade, or plain HTML/CSS. Scope is local-business website work only (salons, law firms, restaurants, clinics, trades); do not use for general-purpose app development in these frameworks.
+description: Implement production-quality responsive local-business websites — React, Astro, Vue, Svelte, Laravel/Blade, or plain HTML/CSS. Scope is local-business website work only (salons, law firms, restaurants, clinics, trades); do not use for general-purpose app development in these frameworks.
 ---
 
 # Frontend Craft
@@ -13,10 +13,9 @@ When the working directory has no existing project (empty, or no recognized fram
 2. Recommendation rules when unstated:
    - Booking/reservation is a primary or secondary conversion → **Laravel + Blade + Livewire** (pairs directly with `../booking-engine/SKILL.md`; add Filament for the admin side). Use **Laravel + Inertia + React** instead only if the brief explicitly wants a React frontend.
    - Brochure/marketing site with no booking backend → **Astro** — best default for SEO and performance on a content-led local-business site; drop in a React/Vue island only where real interactivity is needed.
-   - Brief names a specific stack or host (Vercel, an existing React/Next.js team, shared PHP hosting, Cloudflare Pages) → follow it, and match the two: Vercel/Cloudflare Pages suit Astro or Next.js, shared PHP hosting suits Laravel, plain HTML needs no host-specific tooling.
+   - Brief names a specific stack or host (Vercel, Cloudflare Pages, an existing React team, shared PHP hosting) → follow it, and match the two: Vercel/Cloudflare Pages suit Astro, shared PHP hosting suits Laravel, plain HTML needs no host-specific tooling.
 3. Scaffold commands:
    - **Astro**: `npm create astro@latest . -- --template minimal --install --git --yes`
-   - **Next.js**: `npx create-next-app@latest . --typescript --tailwind --eslint --app --import-alias "@/*"`
    - **React + Vite (SPA)**: `npm create vite@latest . -- --template react-ts`
    - **Vue**: `npm create vite@latest . -- --template vue-ts`
    - **Svelte**: `npm create vite@latest . -- --template svelte-ts`

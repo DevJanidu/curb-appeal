@@ -8,7 +8,7 @@ It ships as a set of skills, orchestrated by `website-director`:
 - `industry-blueprints` — information architecture and conversion paths per vertical (salon, law firm, restaurant, general).
 - `art-direction` — original visual systems, including two salon direction archetypes (soft/spa and sharp/editorial) and scroll-revealed gallery motion.
 - `conversion-copy` — page copy and calls to action.
-- `frontend-craft` — implementation conventions across Next.js, React, Astro, Vue, Svelte, Laravel/Blade, and plain HTML.
+- `frontend-craft` — implementation conventions across React, Astro, Vue, Svelte, Laravel/Blade, and plain HTML.
 - `booking-engine` — appointment/reservation booking: data model, conflict prevention, live booking UI, notifications, admin.
 - `launch-audit` — pre-handoff QA pass.
 

@@ -7,7 +7,7 @@ description: Orchestrate an end-to-end premium local-business website build or r
 
 ## Workflow
 
-1. Inspect the repository, framework, routes, components, styles, assets, scripts, and current git state — or confirm the working directory is empty/has no recognized project. Laravel/Composer/Blade is a recognized stack alongside Next.js, React, Astro, Vue, Svelte, and plain HTML.
+1. Inspect the repository, framework, routes, components, styles, assets, scripts, and current git state — or confirm the working directory is empty/has no recognized project. Laravel/Composer/Blade is a recognized stack alongside React, Astro, Vue, Svelte, and plain HTML.
 2. If the user's message doesn't already contain brief details (business name, industry, services, etc.), respond with the brief below and ask them to fill in and paste back what they can. Make clear they can leave fields blank — nothing is required. Wait for their reply before moving to step 3.
 
    ```
