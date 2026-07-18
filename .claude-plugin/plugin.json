@@ -1,7 +1,7 @@
 {
   "name": "curb-appeal",
-  "version": "0.2.0",
-  "description": "Build production-ready, conversion-focused salon websites and booking experiences.",
+  "version": "0.3.0",
+  "description": "Build production-ready, conversion-focused salon and local-business websites through a deterministic, non-technical workflow.",
   "author": { "name": "Lyco Labs" },
   "license": "MIT"
 }
