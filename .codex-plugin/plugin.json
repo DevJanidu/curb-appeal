@@ -1,15 +1,15 @@
 {
   "name": "curb-appeal",
-  "version": "0.1.0",
-  "description": "Design and build premium, conversion-focused websites for local businesses.",
+  "version": "0.2.0",
+  "description": "Build production-ready, conversion-focused salon websites and booking experiences.",
   "author": {
     "name": "Lyco Labs"
   },
   "skills": "./skills/",
   "interface": {
     "displayName": "Curb Appeal",
-    "shortDescription": "Build premium local-business websites.",
-    "longDescription": "A complete workflow for strategy, visual direction, copy, implementation, SEO, accessibility, responsive behavior, and QA for salons, law firms, restaurants, and other local businesses.",
+    "shortDescription": "Build production-ready salon websites faster.",
+    "longDescription": "A salon-first workflow for project detection, strategy, visual direction, copy, implementation, booking, SEO, accessibility, responsive behavior, and verified QA.",
     "developerName": "Lyco Labs",
     "category": "Developer Tools",
     "capabilities": ["website-design", "website-development", "seo", "quality-assurance"],

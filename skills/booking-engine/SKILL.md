@@ -19,6 +19,10 @@ Normalize rather than duplicating service/staff data onto each appointment row. 
 
 Compute available slots server-side as: staff working hours, minus existing appointments, minus time-off exceptions, minus any configured buffer time between bookings. Never trust a client-submitted slot as valid — re-check for conflicts inside a database transaction at submission time so two customers can't win the same slot in a race condition. A failed re-check should return the customer to slot selection with a clear message, not a generic error.
 
+Store timestamps in UTC and convert using the salon's configured IANA timezone. Calculate the appointment end from the authoritative service duration, never a client value. Treat pending appointments as slot-blocking only for a defined expiry window. Enforce conflict safety with both a transaction/lock and a database constraint or equivalent overlap strategy where the database supports it; an application-only pre-check is race-prone.
+
+Define before launch: minimum notice, maximum advance window, buffers, cancellation/reschedule window, no-show handling, deposit behavior, taxes, and whether staff selection is optional. Do not guess these policies.
+
 ## Interactive booking UI
 
 Drive a 4-step flow — service → stylist/staff (skippable if irrelevant) → date/time → customer details — with a Livewire component (or Alpine.js plus a small JSON availability endpoint if Livewire isn't already in the stack) so slots update live as the customer narrows their choice, with no full-page reload between steps. Because this is a public conversion path, ensure a no-JS fallback works: a plain multi-step Blade form that posts and re-renders server-side still completes a booking.
@@ -36,3 +40,5 @@ When the project type is ERP/management rather than plain booking, treat this ad
 ## Testing
 
 Write a PHPUnit feature test that attempts to double-book the same staff member/slot and asserts the second attempt is rejected — this is the one part of the domain that's easy to get subtly wrong (off-by-one buffer math, timezone handling, race conditions) and cheap to pin down with a test.
+
+Also test adjacent slots, buffers, time off, daylight-saving/timezone conversion when relevant, expired pending holds, cancellation releasing a slot, authorization for staff/admin actions, and notification retries. For deposits, use provider webhooks as the payment source of truth and make webhook processing idempotent.
