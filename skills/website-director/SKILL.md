@@ -36,7 +36,7 @@ description: Orchestrate an end-to-end premium local-business website build or r
 3. When the reply arrives — even if it's partial, or they just say "skip it" / "use placeholders" — confirm what you captured in a short summary that names anything you're treating as a placeholder, and ask for a go-ahead before building. Do not re-send the brief template again and do not re-ask for fields already left blank. If a field material to the design (business name, vertical, primary conversion) is still missing, ask about that one specifically as part of this same confirmation message, not as a separate round. If there's still no new information after that single follow-up, proceed with placeholders — never loop back to asking a third time.
 4. Once confirmed, convert it into a compact site plan: audience, primary conversion, pages, required content, trust signals, integrations, and constraints.
 5. Save the finalized brief — real answers plus clearly labeled placeholders — to `project-brief.md` in the project root, so a future session reads it back in step 1 instead of asking again.
-6. Determine the project type. If it isn't already obvious from the brief, ask this **on its own**, in a separate message from the brief/confirmation exchange above:
+6. Determine the project type. **Always ask this as its own message**, never inferred, never skipped, and never bundled with any other question — even if step 1 found an existing project, and even if the brief implies an answer (a field like "Primary conversion: book appointment" is not explicit enough; it decides copy, not whether this is a booking-tier build or a full ERP-tier one). The only exception: the user has already stated the project type explicitly, in so many words (e.g. literally said "I want an ERP system" or "it's just a frontend, no booking").
 
    ```
    What kind of project is this?
@@ -45,8 +45,8 @@ description: Orchestrate an end-to-end premium local-business website build or r
    3. ERP / management system — full salon or business management (staff, scheduling, service catalog, reporting) beyond customer-facing booking
    ```
 
-   - **Frontend only** → scaffold **Astro**, no further question.
-   - **Frontend + booking** or **ERP / management system** → ask which stack before scaffolding:
+   - **Frontend only**: if step 1 found no existing project, scaffold **Astro**; if a project already exists, just continue with it. No further question either way.
+   - **Frontend + booking** or **ERP / management system**: if step 1 found an existing project, its stack is already fixed — skip the stack question and continue with what's there. Otherwise ask which stack before scaffolding, again as its own message:
 
      ```
      Which stack should I build it in?
@@ -55,7 +55,7 @@ description: Orchestrate an end-to-end premium local-business website build or r
      3. React + Vite frontend only, talking to a separate API you already have or will build (advanced — this plugin's booking/admin guidance assumes a Laravel backend)
      ```
 
-   If step 1 found an existing project, skip both questions above and keep using its existing stack instead. Otherwise scaffold per `../frontend-craft/SKILL.md`'s commands for whichever combination results.
+   Then scaffold per `../frontend-craft/SKILL.md`'s commands for whichever combination results — skip scaffolding entirely if a project already exists.
 7. Load `../industry-blueprints/SKILL.md` and select the closest vertical.
 8. Load `../art-direction/SKILL.md` before choosing layout, typography, color, imagery, motion, and component language.
 9. Load `../conversion-copy/SKILL.md` for page copy and calls to action.
@@ -72,6 +72,7 @@ Build Home, About, Services/Pricing, Team, Gallery or Work, Contact, location/op
 
 - Ask one question per message and wait for the reply before asking the next. Never bundle the brief request, its confirmation, and the project-type question into a single message.
 - A short project description ("build me a salon website") is never a substitute for the brief — always show the actual brief template first unless the user already pasted a substantially completed one or explicitly said to skip it.
+- The project-type question (frontend only / booking / ERP) is never inferred from the brief and never skipped — a mention of booking in the brief is not the same as the user choosing that tier. Ask it explicitly every time, unless the user already stated the type in so many words.
 - Never re-ask for information the user already left blank or declined to give — confirm what you have (naming placeholders) and move forward. A field gets at most one follow-up, ever.
 - Never imitate a reference site exactly. Extract principles and create an original design.
 - Do not use fake awards, reviews, people, case results, statistics, addresses, or certifications. Clearly label demo content.
