@@ -27,6 +27,7 @@ Once scaffolded, everything else in this file applies exactly as it would to a p
 - Add map embeds with accessible titles and a direct directions link; defer loading when practical.
 - Add per-page metadata, canonical handling, Open Graph tags, sitemap/robots support, and structured data — see `../seo/SKILL.md` for the full requirements and stack-specific notes.
 - Respect `prefers-reduced-motion`, visible focus, contrast, touch targets, and zoom.
+- When records expose statuses, load `../status-badge-system/SKILL.md` and use its centralized registry/component instead of raw labels or page-local colors.
 
 ## Laravel / Blade implementation
 

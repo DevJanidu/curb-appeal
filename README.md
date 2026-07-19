@@ -31,6 +31,7 @@ Other verticals are fully supported too: restaurants, law firms, clinics, real e
 - `performance-audit` — practical Lighthouse gates and Core Web Vitals.
 - `deployment-readiness` — per-stack pre-deploy checklist (never deploys without asking).
 - `launch-audit` — final pre-handoff QA pass.
+- `status-badge-system` — centralized status normalization, accessible badges, reactive updates, and application-wide migration.
 - `client-handoff` — plain-language handoff doc for a non-technical owner.
 
 ## Install
