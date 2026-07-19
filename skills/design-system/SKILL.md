@@ -7,6 +7,8 @@ description: Produce a deterministic visual system before building pages — a t
 
 Generate tokens **before** pages, so every page draws from one system instead of improvised styling. This absorbs and formalizes `../art-direction/SKILL.md`'s direction step.
 
+**Default direction**: `website-director` now defaults new builds to `../editorial-luxury-theme/SKILL.md` (a fixed "sharp editorial luxury" system — zero radius, espresso/gold, Poppins). Use this skill's direction picker only when the brief clearly wants something else (soft/rounded spa, playful/family business, or client-supplied brand that conflicts with editorial luxury).
+
 ## 1. Pick one direction
 
 Choose a single named direction that fits the brand — never blend several:
