@@ -20,7 +20,7 @@ Each state has an entry condition, an exit condition, an artifact, and a failure
 | 5 | CONFIRM | Summarize plan; get an explicit go-ahead. | this skill | user approval |
 | 6 | PLAN | Assemble and save the plan. | `../project-planner/SKILL.md` | `project-brief.md`, state file |
 | 7 | PREPARE | Scaffold (only if empty) or confirm existing stack. Never scaffold into a non-empty dir. | `../frontend-craft/SKILL.md` | project skeleton |
-| 8 | BUILD | Design tokens, then shell + core pages. If records expose statuses, centralize them before page-local badges appear. | `../design-system/SKILL.md`, `../salon-blueprint/` or `../business-blueprints/`, `../frontend-craft/`, `../status-badge-system/SKILL.md` when relevant | core pages |
+| 8 | BUILD | Design tokens, then shell + core pages. Default to `../editorial-luxury-theme/SKILL.md` for the visual direction unless the brief calls for a different feel, in which case fall back to `../design-system/SKILL.md`'s direction picker. If records expose statuses, centralize them before page-local badges appear. | `../editorial-luxury-theme/SKILL.md` (default) or `../design-system/SKILL.md`, `../salon-blueprint/` or `../business-blueprints/`, `../frontend-craft/`, `../status-badge-system/SKILL.md` when relevant | core pages |
 | 9 | CONTENT | Write copy; run integrity scan. | `../conversion-copy/SKILL.md`, `../content-integrity/SKILL.md` | verified copy |
 | 10 | IMAGES | Source, optimize, verify imagery. | `../image-pipeline/SKILL.md` | images + `image-sources.json` |
 | 11 | INTEGRATIONS | Wire forms/booking to real targets. | `../form-integrations/SKILL.md`, `../booking-engine/SKILL.md` | working forms/booking |
