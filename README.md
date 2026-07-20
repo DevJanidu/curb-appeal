@@ -1,83 +1,215 @@
 # Curb Appeal
 
-A Claude Code and Codex plugin for building production-ready, conversion-focused business websites — with the deepest specialization for salons, spas, barbershops, nail/lash studios, and beauty businesses. It runs a deterministic, non-technical workflow: you describe your business in plain language, and the plugin detects the project, plans, builds, sources images, wires real forms/booking, and applies SEO, accessibility, responsive, and QA work.
+Curb Appeal is a Claude Code and Codex plugin for building professional, production ready business websites that are designed to generate enquiries, bookings, calls, and sales.
 
-Other verticals are fully supported too: restaurants, law firms, clinics, real estate, trades, hotels, gyms, education, and general local business.
+It has advanced support for salons, spas, barbershops, nail studios, lash studios, and other beauty businesses. It also supports restaurants, law firms, clinics, real estate businesses, trades, hotels, gyms, educational businesses, and general local businesses.
 
-## How it works — a 17-state workflow
+You describe the business using simple language. Curb Appeal then detects the existing project, recommends the right approach, creates a plan, builds the website, finds suitable images, connects real forms or booking features, and completes the required SEO, accessibility, responsive design, security, performance, and quality assurance work.
 
-`website-director` orchestrates a state machine: **DETECT → INTAKE → CLASSIFY → RECOMMEND → CONFIRM → PLAN → PREPARE → BUILD → CONTENT → IMAGES → INTEGRATIONS → SEO → RESPONSIVE → TEST → FIX → HANDOFF → COMPLETE.** Progress is saved to `.curb-appeal/project-state.json` in your project so a later session resumes instead of starting over.
+You do not need to understand frameworks or technical terminology to use it.
 
-### Skills
+## How It Works
 
-- `website-director` — the orchestrator / state machine.
-- `project-detector` — classifies new vs. existing projects and the stack before any scaffold or edit.
-- `business-intake` — plain-language intake (paste a brief, answer simple questions, or use placeholders).
-- `project-recommender` — recommends project type + stack from outcome questions, not framework jargon.
-- `project-planner` — writes `project-brief.md` and the resumable state file.
-- `design-system` — deterministic visual tokens before any page is built.
-- `business-blueprints` — per-vertical IA, conversions, pages, schema, and content rules.
-- `salon-blueprint` — deep salon intake, content model, page recipes, and quality bar.
-- `conversion-copy` — outcome-led copy and CTAs.
-- `content-integrity` — blocks fabricated reviews/awards/prices/people and placeholder-in-production.
-- `frontend-craft` — implementation across Astro, Laravel (Blade/Livewire/Inertia), React/Vite, Vue, Svelte, HTML.
-- `form-integrations` — wires forms to real targets; never fakes a submission.
-- `booking-engine` — appointment/reservation data model, conflict safety, notifications, admin.
-- `image-pipeline` — sources, optimizes, and verifies real images; records provenance.
-- `responsive-design` — mobile-first, verified across all device breakpoints.
-- `accessibility-audit` — WCAG 2.2 AA checks.
-- `seo` — technical SEO, structured data, sitemap/robots, Core Web Vitals.
-- `security-audit` — CSRF, validation, authorization, secrets, headers, webhooks.
-- `performance-audit` — practical Lighthouse gates and Core Web Vitals.
-- `deployment-readiness` — per-stack pre-deploy checklist (never deploys without asking).
-- `launch-audit` — final pre-handoff QA pass.
-- `status-badge-system` — centralized status normalization, accessible badges, reactive updates, and application-wide migration.
-- `client-handoff` — plain-language handoff doc for a non-technical owner.
+The `website-director` controls a structured workflow with 17 states:
 
-## Install
+`DETECT → INTAKE → CLASSIFY → RECOMMEND → CONFIRM → PLAN → PREPARE → BUILD → CONTENT → IMAGES → INTEGRATIONS → SEO → RESPONSIVE → TEST → FIX → HANDOFF → COMPLETE`
 
-In an interactive `claude` session (launch `claude` first, then run these):
+Progress is saved inside:
 
+```text
+.curb-appeal/project-state.json
 ```
+
+This allows Curb Appeal to continue from the previous state during a later session instead of restarting the entire process.
+
+## Included Skills
+
+### website-director
+
+The main orchestrator that manages the complete workflow and controls the project state.
+
+### project-detector
+
+Checks whether the folder contains a new project or an existing project. It also detects the current technology stack before creating or editing files.
+
+### business-intake
+
+Collects the business requirements using simple questions. You can paste a complete brief, answer questions one at a time, or temporarily use placeholders.
+
+### project-recommender
+
+Recommends the most suitable project type and technology stack based on what the website needs to achieve. It does not require the user to understand framework terminology.
+
+### project-planner
+
+Creates the project plan, writes `project-brief.md`, and prepares the resumable project state file.
+
+### design-system
+
+Creates consistent design tokens, typography, spacing, colours, buttons, forms, cards, and other visual rules before pages are built.
+
+### business-blueprints
+
+Provides page structures, conversion goals, content rules, schema recommendations, and information architecture for different business industries.
+
+### salon-blueprint
+
+Provides advanced support for salons, spas, barbershops, nail studios, lash studios, and beauty businesses. It includes detailed intake requirements, page recipes, content models, booking guidance, and quality standards.
+
+### conversion-copy
+
+Creates clear, outcome focused website copy with strong calls to action.
+
+### content-integrity
+
+Prevents the website from including fabricated reviews, awards, prices, employees, certifications, achievements, or other unverified information. It also prevents unfinished placeholder content from reaching production.
+
+### frontend-craft
+
+Builds the frontend using supported technologies such as Astro, Laravel Blade, Livewire, Inertia, React with Vite, Vue, Svelte, and standard HTML.
+
+### form-integrations
+
+Connects forms to real destinations and verifies that submissions work. It never creates a form that only appears to submit successfully.
+
+### booking-engine
+
+Provides appointment and reservation functionality, including data models, availability management, conflict prevention, notifications, and administration features.
+
+### image-pipeline
+
+Finds suitable images, optimises them, verifies that they work correctly, and records their original sources for future reference.
+
+### responsive-design
+
+Creates a mobile first interface and verifies the website across mobile phones, tablets, laptops, desktops, and other important screen sizes.
+
+### accessibility-audit
+
+Checks the website against WCAG 2.2 AA accessibility requirements.
+
+### seo
+
+Handles technical SEO, page metadata, structured data, sitemap generation, robots configuration, and Core Web Vitals improvements.
+
+### security-audit
+
+Checks CSRF protection, input validation, authorisation, secret management, security headers, webhook handling, and other important security requirements.
+
+### performance-audit
+
+Checks practical Lighthouse targets, page speed, asset optimisation, loading behaviour, and Core Web Vitals.
+
+### deployment-readiness
+
+Creates a deployment checklist based on the technology stack. Curb Appeal never deploys a project without asking for permission.
+
+### launch-audit
+
+Performs a complete quality assurance review before the website is handed over.
+
+### status-badge-system
+
+Creates a centralised status system with consistent labels, accessible colours, reactive updates, status normalisation, and application wide migration.
+
+### client-handoff
+
+Creates a simple handoff document that explains how a nontechnical business owner can manage and maintain the website.
+
+## Installation
+
+Start an interactive Claude Code session by running `claude`.
+
+Then run the following commands:
+
+```text
 /plugin marketplace add DevJanidu/curb-appeal
 /plugin install curb-appeal@lyco-labs
 /reload-plugins
 ```
 
-If the repository is private, make sure you're authenticated with GitHub first (`gh auth login`, or an SSH key in `ssh-agent`) — Claude Code reuses your git credentials. If it's public, no authentication is needed to install.
+For a private repository, make sure GitHub authentication is configured first. You can use:
 
-To test a local checkout:
-
+```bash
+gh auth login
 ```
+
+You can also use an SSH key that has already been added to `ssh-agent`.
+
+Claude Code will reuse your existing Git credentials.
+
+No authentication is required when installing from a public repository.
+
+## Testing a Local Checkout
+
+To test a local copy of the plugin, run:
+
+```text
 /plugin marketplace add /path/to/this/repo
 /plugin install curb-appeal@lyco-labs
 ```
 
-## Use
+Replace `/path/to/this/repo` with the actual location of the repository on your computer.
 
-Open Claude Code in your website folder and say:
+## Usage
 
-> Use Curb Appeal to build a website for my business. Ask me simple questions.
+Open Claude Code inside the website project folder and enter:
 
-The plugin detects your project, offers to take a pasted brief / ask simple questions / use placeholders, asks what the site should *do* (in plain language), recommends the stack, saves a plan, and builds — then handles images, forms/booking, SEO, responsive, accessibility, and QA, and produces a `HANDOFF.md`. You never need to name a framework.
-
-## Updating
-
+```text
+Use Curb Appeal to build a website for my business. Ask me simple questions.
 ```
+
+Curb Appeal will:
+
+1. Detect whether the folder contains a new or existing project.
+2. Let you paste a business brief, answer simple questions, or use placeholders.
+3. Ask what the website should help the business achieve.
+4. Recommend a suitable project type and technology stack.
+5. Create and save a project plan.
+6. Build the website.
+7. Add suitable content and images.
+8. Connect real contact forms or booking functionality.
+9. Complete SEO, responsive design, accessibility, security, and performance work.
+10. Test the project and fix identified problems.
+11. Create a clear `HANDOFF.md` document.
+
+You do not need to choose or name a framework unless you specifically want to.
+
+## Updating Curb Appeal
+
+Run the following commands to install the latest available version:
+
+```text
 /plugin marketplace update lyco-labs
 /reload-plugins
 ```
 
-## Development
+## Development and Validation
 
-Dependency-free checks run in CI on every push and PR:
+Dependency free validation checks run through continuous integration for every push and pull request.
 
+Validate manifests, versions, frontmatter, references, secrets, and paths:
+
+```bash
+python scripts/validate_plugin.py
 ```
-python scripts/validate_plugin.py        # manifests, versions, frontmatter, refs, secrets, paths
-python scripts/validate_state.py --self-test   # project-state schema
-python skills/project-detector/scripts/detect_project.py <dir>   # classify a directory
+
+Test the project state schema:
+
+```bash
+python scripts/validate_state.py --self-test
 ```
+
+Test project detection for a specific directory:
+
+```bash
+python skills/project-detector/scripts/detect_project.py <dir>
+```
+
+Replace `<dir>` with the directory you want to inspect.
 
 ## License
 
-MIT — see [LICENSE](LICENSE).
+Curb Appeal is available under the MIT License.
+
+See the `LICENSE` file for the complete licence terms.
